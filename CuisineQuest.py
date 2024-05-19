@@ -54,6 +54,11 @@ def handle_message(update, context):
         update.message.reply_text('Invalid option! Please use the /location command to choose again.')
         
     
+
+
+
+dggsc
+
 dp.add_handler(CommandHandler("start", start))
 dp.add_handler(CommandHandler("features", feature_command))
 dp.add_handler(CommandHandler("Location", location))
