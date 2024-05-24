@@ -24,7 +24,7 @@ updater = Updater(token = TOKEN, use_context = True)
 
 dp = updater.dispatcher
 
-hawkers = pd.read_csv('/Users/DELL1/Downloads/Telegram Desktop/Updated List Of Hawker Centers.csv')
+hawkers = pd.read_csv('/Users/DELL1/Downloads/updated-2.csv')
 
 
 def start(update, context):
@@ -34,55 +34,76 @@ def feature_command(update, context):
     features_text = (
        "/Location - Choose a location of your liking and discover the best restaurants\n"
        "/Dietary preference - Filter restaurants based on dietary preference\n"
+       "/Cuisine - Filter restaurants based on cuisine!\n"
        "/Review - Review your favourite restaurants!"
     )
     update.message.reply_text(features_text)
     
 
-def location(update, context):
-    button1 = KeyboardButton('North')
-    button2 = KeyboardButton('South')
-    button3 = KeyboardButton('East')
-    button4 = KeyboardButton('West')
-    button5 = KeyboardButton('Central')
-    keyboard = ReplyKeyboardMarkup([[button1], [button2], [button3], [button4], [button5]], resize_keyboard=True, one_time_keyboard=True)
+def cuisine(update, context):
+    button1 = KeyboardButton('Asian')
+    button2 = KeyboardButton('Western')
+    button3 = KeyboardButton('Halal')
+    button4 = KeyboardButton('Indian')
+    button5 = KeyboardButton('Chinese')
+    button6 = KeyboardButton('Korean')
+    button7 = KeyboardButton('Japanese')
+    button8 = KeyboardButton('Others (Click for surprise)')
+    
+    keyboard = ReplyKeyboardMarkup([[button1], [button2], [button3], [button4], [button5], [button6], [button7], [button8]], resize_keyboard=True, one_time_keyboard=True)
     
     update.message.reply_text('Choose a direction to find restaurants:', reply_markup=keyboard)
 
 def handle_message(update, context):
     text = update.message.text
-    if text == 'North':
-        update.message.reply_text('Searching for restaurants in the North!')
-        updated = np.array(hawkers.loc[hawkers["Location"] == "North"])
+    if text == 'Asian':
+        update.message.reply_text('Searching of Asian restaurants')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Asian"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
-        update.message.reply_text("Your food place is: " + updated[rows, 0] + " (" + updated[rows, 2] + ")")
-    elif text == 'South':
-        update.message.reply_text('Searching for restaurants in the South!')
-        updated = np.array(hawkers.loc[hawkers["Location"] == "South"])
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Halal':
+        update.message.reply_text('Searching for Halal restaurants!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Halal"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
-        update.message.reply_text("Your food place is: " + updated[rows, 0] + " (" + updated[rows, 2] + ")")
-    elif text == "West":
-        update.message.reply_text('Searching for restaurants in the West!')
-        updated = np.array(hawkers.loc[hawkers["Location"] == "West"])
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Western':
+        update.message.reply_text('Searching for Western restaurants!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Western"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
-        update.message.reply_text("Your food place is: " + updated[rows, 0] + " (" + updated[rows, 2] + ")")
-    elif text == 'East':
-        update.message.reply_text('Searching for restaurants in the East!')
-        updated = np.array(hawkers.loc[hawkers["Location"] == "East"])
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Japanese':
+        update.message.reply_text('Searching for Japanese restaurants!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Japanese"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
-        
-        update.message.reply_text("Your food place is: " + updated[rows, 0] + " (" + updated[rows, 2] + ")")
-    elif text == 'Central':
-        update.message.reply_text('Searching for restaurants in the Central')
-        updated = np.array(hawkers.loc[hawkers["Location"] == "Central"])
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Korean':
+        update.message.reply_text('Searching for Korean restaurants!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Korean"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
-        
-        update.message.reply_text("Your food place is: " + updated[rows, 0] + " (" + updated[rows, 2] + ")")
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Chinese':
+        update.message.reply_text('Searching for Chinese restaurants!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Chinese"])
+        size = updated.shape
+        rows = random.randint(0, size[0] - 1)
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Indian':
+        update.message.reply_text('Searching for Indian restaurants!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Indian"])
+        size = updated.shape
+        rows = random.randint(0, size[0] - 1)
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
+    elif text == 'Others':
+        update.message.reply_text('Surprise!')
+        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Others"])
+        size = updated.shape
+        rows = random.randint(0, size[0] - 1)
+        update.message.reply_text("Your food place is: " + updated[rows, 2] + " (" + updated['address'] + ")")
     else:
         update.message.reply_text('Invalid option! Please use the /location command to choose again.')
         
@@ -94,7 +115,7 @@ def handle_message(update, context):
 
 dp.add_handler(CommandHandler("start", start))
 dp.add_handler(CommandHandler("features", feature_command))
-dp.add_handler(CommandHandler("Location", location))
+dp.add_handler(CommandHandler("Cuisine", cuisin))
 dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
 
 updater.start_polling()
