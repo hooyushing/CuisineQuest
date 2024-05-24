@@ -115,7 +115,7 @@ def handle_message(update, context):
 
 dp.add_handler(CommandHandler("start", start))
 dp.add_handler(CommandHandler("features", feature_command))
-dp.add_handler(CommandHandler("Cuisine", cuisin))
+dp.add_handler(CommandHandler("Cuisine", cuisine))
 dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
 
 updater.start_polling()
