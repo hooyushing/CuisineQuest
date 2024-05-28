@@ -110,7 +110,9 @@ def handle_message(update, context):
 
 
 def location(update, context):
+    update.message.reply_text('These are the available MRT stations you can key in: Admiralty, Aljunied, Ang Mo Kio, Bartley, Bayfront, Bedok, Bishan, Boon Keng, Boon Lay, Bras Basah, Braddell, Buangkok, Bugis, Buona Vista, Changi Airport, Choa Chu Kang, Chinese Garden, Chinatown, City Hall, Clarke Quay, Clementi, Commonwealth, Dover, Dhoby Ghaut, Eunos, Esplanade, Expo, Farrer Park, HarbourFront, Havelock, Hougang, Joo Koon, Jurong East, Kallang, Kembangan, Keppel, Khatib, Kovan, Kranji, Lakeside, Lavender, Little India, Lorong Chuan, Marina Bay, Marina South, Marine Parade, Marine Terrace, Marsiling, Maxwell, Mountbatten, Novena, Orchard, Pasir Ris, Paya Lebar, Pioneer, Potong Pasir, Promenade, Punggol, Queenstown, Raffles Place, Redhill, Sembawang, Sengkang, Shenton Way, Siglap, Simei, Somerset, Stadium, Suntec City, Tampines, Tanah Merah, Tanjong Katong, Tanjong Pagar, Toa Payoh, Tiong Bahru, VivoCity, Woodlands, Yew Tee, Yishun')
     update.message.reply_text('Please enter your closest MRT Station name.')
+    
     
 
 def handle_message(update, context):
@@ -344,253 +346,253 @@ def handle_message(update, context):
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])                                   
     elif text == 'Woodlands':
-        update.message.reply_text('Searching for restaurants in Woodlands!')
+        update.message.reply_text('Searching for restaurants in Woodlands')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Woodlands"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Ang Mo Kio':
-        update.message.reply_text('Searching for restaurants in Ang Mo Kio!')
+        update.message.reply_text('Searching for restaurants in Ang Mo Kio')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Ang Mo Kio"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Joo Koon':
-        update.message.reply_text('Searching for restaurants in Joo Koon!')
+        update.message.reply_text('Searching for restaurants in Joo Koon')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Joo Koon"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Yishun':
-        update.message.reply_text('Searching for restaurants in Yishun!')
+        update.message.reply_text('Searching for restaurants in Yishun')
         updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Chinese"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Admiralty':
-        update.message.reply_text('Searching for restaurants in Admiralty!')
+        update.message.reply_text('Searching for restaurants in Admiralty')
         updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == "Indian"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Marsiling':
-        update.message.reply_text('Searching for restaurants in Marsiling!')
+        update.message.reply_text('Searching for restaurants in Marsiling')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Marsiling"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Canberra':
-        update.message.reply_text('Searching for restaurants in Canberra!')
+        update.message.reply_text('Searching for restaurants in Canberra')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Canberra"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Lakeside':
-        update.message.reply_text('Searching for restaurants in Lakeside!')
+        update.message.reply_text('Searching for restaurants in Lakeside')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Lakeside"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Yew Tee':
-        update.message.reply_text('Searching for restaurants in Yew Tee!')
+        update.message.reply_text('Searching for restaurants in Yew Tee')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Yew Tee"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Farrer Park':
-        update.message.reply_text('Searching for restaurants in Farrer Park!')
+        update.message.reply_text('Searching for restaurants in Farrer Park')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Farrer Park"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Siglap':
-        update.message.reply_text('Searching for restaurants in Siglap!')
+        update.message.reply_text('Searching for restaurants in Siglap')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Siglap"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Marine Terrace':
-        update.message.reply_text('Searching for restaurants in Marine Terrace!')
+        update.message.reply_text('Searching for restaurants in Marine Terrace')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Marine Terrace"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Kembangan':
-        update.message.reply_text('Searching for restaurants in Kembangan!')
+        update.message.reply_text('Searching for restaurants in Kembangan')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Kembangan"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Tampines':
-        update.message.reply_text('Searching for restaurants in Tampines!')
+        update.message.reply_text('Searching for restaurants in Tampines')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Tampines"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Simei':
-        update.message.reply_text('Searching for restaurants in Simei!')
+        update.message.reply_text('Searching for restaurants in Simei')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Simei"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Changi Airport':
-        update.message.reply_text('Searching for restaurants in Changi Airport!')
+        update.message.reply_text('Searching for restaurants in Changi Airport')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Changi Airport"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Pasir Ris':
-        update.message.reply_text('Searching for restaurants in Pasir Ris!')
+        update.message.reply_text('Searching for restaurants in Pasir Ris')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Pasir Ris"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Expo':
-        update.message.reply_text('Searching for restaurants in Expo!')
+        update.message.reply_text('Searching for restaurants in Expo')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Expo"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Chinese Garden':
-        update.message.reply_text('Searching for restaurants in Chinese Garden!')
+        update.message.reply_text('Searching for restaurants in Chinese Garden')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Chinese Garden"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Tanah Merah':
-        update.message.reply_text('Searching for restaurants in Tanah Merah!')
+        update.message.reply_text('Searching for restaurants in Tanah Merah')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Tanah Merah"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Bishan':
-        update.message.reply_text('Searching for restaurants in Bishan!')
+        update.message.reply_text('Searching for restaurants in Bishan')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Bishan"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Potong Pasir':
-        update.message.reply_text('Searching for restaurants in Potong Pasir!')
+        update.message.reply_text('Searching for restaurants in Potong Pasir')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Potong Pasir"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Braddell':
-        update.message.reply_text('Searching for restaurants in Braddell!')
+        update.message.reply_text('Searching for restaurants in Braddell')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Braddell"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Bras Basah':
-        update.message.reply_text('Searching for restaurants in Bras Basah!')
+        update.message.reply_text('Searching for restaurants in Bras Basah')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Bras Basah"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Potong Pasir':
-        update.message.reply_text('Searching for restaurants in Potong Pasir!')
+        update.message.reply_text('Searching for restaurants in Potong Pasir')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Potong Pasir"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Lorong Chuan':
-        update.message.reply_text('Searching for restaurants in Lorong Chuan!')
+        update.message.reply_text('Searching for restaurants in Lorong Chuan')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Lorong Chuan"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Bartley':
-        update.message.reply_text('Searching for restaurants in Bartley!')
+        update.message.reply_text('Searching for restaurants in Bartley')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Bartley"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Little India':
-        update.message.reply_text('Searching for restaurants in Little India!')
+        update.message.reply_text('Searching for restaurants in Little India')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Little India"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Kovan':
-        update.message.reply_text('Searching for restaurants in Kovan!')
+        update.message.reply_text('Searching for restaurants in Kovan')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Kovan"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Punggol':
-        update.message.reply_text('Searching for restaurants in Punggol!')
+        update.message.reply_text('Searching for restaurants in Punggol')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Punggol"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Buangkok':
-        update.message.reply_text('Searching for restaurants in Buangkok!')
+        update.message.reply_text('Searching for restaurants in Buangkok')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Buangkok"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Sengkang':
-        update.message.reply_text('Searching for restaurants in Sengkang!')
+        update.message.reply_text('Searching for restaurants in Sengkang')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Sengkang"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Khatib':
-        update.message.reply_text('Searching for restaurants in Khatib!')
+        update.message.reply_text('Searching for restaurants in Khatib')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Khatib"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Tanjong Katong':
-        update.message.reply_text('Searching for restaurants in Tanjong Katong!')
+        update.message.reply_text('Searching for restaurants in Tanjong Katong')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Tanjong Katong"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Aljunied':
-        update.message.reply_text('Searching for restaurants in Aljunied!')
+        update.message.reply_text('Searching for restaurants in Aljunied')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Aljunied"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Mountbatten':
-        update.message.reply_text('Searching for restaurants in Mountbatten!')
+        update.message.reply_text('Searching for restaurants in Mountbatten')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Mountbatten"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Marine Parade':
-        update.message.reply_text('Searching for restaurants in Marine Parade!')
+        update.message.reply_text('Searching for restaurants in Marine Parade')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Marine Parade"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Stadium':
-        update.message.reply_text('Searching for restaurants in Stadium!')
+        update.message.reply_text('Searching for restaurants in Stadium')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Stadium"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Bayfront':
-        update.message.reply_text('Searching for restaurants in Bayfront!')
+        update.message.reply_text('Searching for restaurants in Bayfront')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Bayfront"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Novena':
-        update.message.reply_text('Searching for restaurants in Novena!')
+        update.message.reply_text('Searching for restaurants in Novena')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Novena"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Paya Lebar':
-        update.message.reply_text('Searching for restaurants in Paya Lebar!')
+        update.message.reply_text('Searching for restaurants in Paya Lebar')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Paya Lebar"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
         update.message.reply_text("Your eatery is: " + updated[rows, 4])
     elif text == 'Promenade':
-        update.message.reply_text('Searching for restaurants in Promenade!')
+        update.message.reply_text('Searching for restaurants in Promenade')
         updated = np.array(hawkers.loc[hawkers["Location"] == "Promenade"])
         size = updated.shape
         rows = random.randint(0, size[0] - 1)
