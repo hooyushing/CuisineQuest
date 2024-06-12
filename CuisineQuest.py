@@ -11,6 +11,7 @@ import numpy as np
 import seaborn as sns
 from sklearn import preprocessing
 import random
+import re
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
@@ -24,9 +25,9 @@ updater = Updater(token = TOKEN, use_context = True)
 
 dp = updater.dispatcher
 
-hawkers = pd.read_csv('/Users/DELL1/Downloads/Telegram Desktop/With_Updated_Dietary_Preferences (1).csv')
+hawkers = pd.read_csv('/Users/DELL1/Downloads/Telegram Desktop/Orbital 12 Jun CSV File.csv')
 
-START, FEATURE, CUISINE, DIETARY, LOCATION = range(5)
+START, FEATURE, CUISINE, DIETARY, LOCATION, RATING = range(6)
 
 
 def start(update: Update, context: CallbackContext) -> int:
@@ -38,7 +39,7 @@ def feature_command(update: Update, context: CallbackContext) -> int:
        "/Location - Choose a location of your liking and discover the best restaurants\n"
        "/dietary_preference - Filter restaurants based on dietary preference\n"
        "/Cuisine - Filter restaurants based on cuisine!\n"
-       "/Review - Review your favourite restaurants!"
+       "/Ratings - Rate a restaurant!"
     )
     update.message.reply_text(features_text)
     return FEATURE
@@ -63,7 +64,7 @@ def handle_dietary_preference(update: Update, context: CallbackContext) -> int:
             update.message.reply_text(f'No {text} eateries')
         else:
             rows = random.randint(0, updated.shape[0] - 1)
-            update.message.reply_text("Your eatery is: " + updated[rows, 3])
+            update.message.reply_text("Your eatery is: " + updated[rows, 3] + ", ratings: " + updated[rows, 13])
     else:
         update.message.reply_text('Invalid option! Please use the /dietary_preference command to choose again.')
     return ConversationHandler.END    
@@ -93,17 +94,10 @@ def handle_cuisine(update: Update, context: CallbackContext) -> int:
             update.message.reply_text(f'No eateries found with {text} cuisine')
         else:
             rows = random.randint(0, updated.shape[0] - 1)
-            update.message.reply_text("Your eatery is: " + updated[rows, 3])
+            update.message.reply_text("Your eatery is: " + updated[rows, 3] + ", ratings: " + updated[rows, 13])
     else:
         update.message.reply_text('Invalid option! Please use the /cuisine command to choose again.')    
     return ConversationHandler.END    
-
-
-
-
-
-
-        
 
 
 
@@ -133,13 +127,30 @@ def handle_location(update: Update, context: CallbackContext) -> int:
             update.message.reply_text(f'No eateries found near {text}')
         else:
             rows = random.randint(0, updated.shape[0] - 1)
-            update.message.reply_text("Your eatery is: " + updated[rows, 3])
+            update.message.reply_text("Your eatery is: " + updated[rows, 3] + ", ratings: " + updated[rows, 13])
     else:
         update.message.reply_text('Invalid location. Please enter a valid location.')
     return ConversationHandler.END    
 
 
-    
+
+
+def rate_restaurants(update: Update, context: CallbackContext) -> int:
+    update.message.reply_text('Please enter the name of the restaurant you wish to rate.')
+    return RATING
+
+def handle_ratings(update: Update, context: CallbackContext) -> int:
+    keywords = update.message.text
+    pattern = re.compile(keywords, re.IGNORECASE)
+    matching_restaurants = df[df['Restaurant Name'].apply(lambda x: bool(pattern.search(x)))]
+    matching_names = matching_restaurants['Restaurant Name'].tolist()
+
+    if matching_names:
+        update.message.reply_text("Matching Restaurants:\n" + "\n".join(matching_names))
+    else:
+        update.message.reply_text("No matching restaurants found.")
+    return ConversationHandler.END      
+
 
 
 conv_handler = ConversationHandler(
@@ -149,11 +160,13 @@ conv_handler = ConversationHandler(
         FEATURE: [
             CommandHandler('cuisine', cuisine),
             CommandHandler('dietary_preference', dietary_preference),
-            CommandHandler('location', find_eatery)
+            CommandHandler('location', find_eatery),
+            CommandHandler('Review', rate_restaurants)
         ],
         CUISINE: [MessageHandler(Filters.text & ~Filters.command, handle_cuisine)],
         DIETARY: [MessageHandler(Filters.text & ~Filters.command, handle_dietary_preference)],
-        LOCATION: [MessageHandler(Filters.text & ~Filters.command, handle_location)]
+        LOCATION: [MessageHandler(Filters.text & ~Filters.command, handle_location)],
+        RATING: [MessageHandler(Filters.text & ~Filters.command, handle_ratings)]
     },
     fallbacks=[CommandHandler('start', start)]
 )
