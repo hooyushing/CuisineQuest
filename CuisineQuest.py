@@ -98,35 +98,11 @@ def handle_cuisine(update: Update, context: CallbackContext) -> int:
         update.message.reply_text('Invalid option! Please use the /cuisine command to choose again.')    
     return ConversationHandler.END    
 
-"""def handle_message1(update, context):
-    text = update.message.text
-    valid_cuisines = ['Asian', 'Western', 'Halal', 'Indian', 'Chinese', 'Korean', 'Japanese', 'Others']
-    if text in valid_cuisines:
-        updated = np.array(hawkers.loc[hawkers["CuisineUpdated"] == text])
-        if updated.size == 0:
-            update.message.reply_text(f'No eateries found with {text} cuisine')
-            return
-        rows = random.randint(0, updated.shape[0] - 1)
-        update.message.reply_text("Your eatery is: " + updated[rows, 4])
-    else:
-        update.message.reply_text('Invalid option! Please use the /Cuisine command to choose again.')"""
 
 
 
 
-"""def handle_message2(update, context):
-    text = update.message.text
-    valid_dietary_preferences = ['Vegan', 'Halal', 'Vegetarian']
-    if text in valid_dietary_preferences:
-        updated = np.array(hawkers.loc[hawkers["Dietary Preferences"] == text])
-        if updated.size == 0:
-            update.message.reply_text(f'No {text} eateries')
-            return
-        rows = random.randint(0, updated.shape[0] - 1)
-    
-        update.message.reply_text("Your eatery is: " + updated[rows, 4])
-    else:        
-        update.message.reply_text('Invalid option! Please use the /dietary_preference command to choose again.')    """
+
         
 
 
@@ -165,18 +141,6 @@ def handle_location(update: Update, context: CallbackContext) -> int:
 
     
 
-"""def handle_message3(update, context):
-    text = update.message.text
-    valid_locations = ['Admiralty', 'Aljunied', 'Ang Mo Kio', 'Bartley', 'Bayfront', 'Bedok', 'Bishan', 'Boon Keng', 'Boon Lay', 'Bras Basah', 'Braddell', 'Buangkok', 'Bugis', 'Buona Vista', 'Changi Airport', 'Choa Chu Kang','Chinese Garden', 'Chinatown', 'City Hall', 'Clarke Quay', 'Clementi', 'Commonwealth', 'Dover', 'Dhoby Ghaut', 'Eunos', 'Esplanade', 'Expo', 'Farrer Park', 'HarbourFront', 'Havelock', 'Hougang', 'Joo Koon', 'Jurong East', 'Kallang', 'Kembangan', 'Keppel', 'Khatib', 'Kovan', 'Kranji', 'Lakeside', 'Lavender', 'Little India', 'Lorong Chuan', 'Marina Bay', 'Marina South', 'Marine Parade', 'Marine Terrace', 'Marsiling', 'Maxwell', 'Mountbatten', 'Novena', 'Orchard', 'Pasir Ris', 'Paya Lebar', 'Pioneer', 'Potong Pasir', 'Promenade', 'Punggol', 'Queenstown', 'Raffles Place', 'Redhill', 'Sembawang', 'Sengkang', 'Shenton Way', 'Siglap', 'Simei', 'Somerset', 'Stadium', 'Suntec City', 'Tampines', 'Tanah Merah', 'Tanjong Katong', 'Tanjong Pagar', 'Toa Payoh', 'Tiong Bahru', 'VivoCity', 'Woodlands', 'Yew Tee', 'Yishun']
-    if text in valid_locations:
-        updated = np.array(hawkers.loc[hawkers["Location"] == text])
-        if updated.size == 0:
-            update.message.reply_text(f'No eateries found near {text}')
-            return
-        rows = random.randint(0, updated.shape[0] - 1)
-        update.message.reply_text("Your eatery is: " + updated[rows, 4])
-    else:
-        update.message.reply_text('Invalid location. Please enter a valid location.') """
 
 conv_handler = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
@@ -201,15 +165,6 @@ updater.idle()
 
 
 
-
-"""dp.add_handler(CommandHandler("start", start))
-dp.add_handler(CommandHandler("features", feature_command))
-dp.add_handler(CommandHandler("Dietary_preference", dietary_peference))
-dp.add_handler(CommandHandler("Cuisine", cuisine))
-dp.add_handler(CommandHandler("Location", find_eatery))
-dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
-updater.start_polling()
-updater.idle()"""
 
 
 
