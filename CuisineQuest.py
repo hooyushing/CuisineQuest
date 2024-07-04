@@ -152,8 +152,8 @@ def rate_restaurants(update: Update, context: CallbackContext) -> int:
 def handle_ratings(update: Update, context: CallbackContext) -> int:
     keywords = update.message.text
     pattern = re.compile(keywords, re.IGNORECASE)
-    matching_restaurants = hawkers[hawkers['name'].apply(lambda x: bool(pattern.search(x)))]
-    matching_names = matching_restaurants['name'].tolist()
+    matching_restaurants = hawkers[hawkers['address'].apply(lambda x: bool(pattern.search(x)))]
+    matching_names = matching_restaurants['address'].tolist()
 
     if matching_names:
         buttons = [
@@ -179,11 +179,12 @@ def save_rating(update: Update, context: CallbackContext) -> int:
     
 
     if rating.isdigit() and 0 <= int(rating) <= 5:
-        total = hawkers.loc[hawkers['name'] == restaurant, 'rating'] * hawkers.loc[hawkers['name'] == restaurant, 'visited']
-        hawkers.loc[hawkers['name'] == restaurant, 'visited'] = hawkers.loc[hawkers['name'] == restaurant, 'visited'] + 1
-        hawkers.loc[hawkers['name'] == restaurant, 'rating'] = (int(rating) + total)/hawkers.loc[hawkers['name'] == restaurant, 'visited']
+        total = hawkers.loc[hawkers['address'] == restaurant, 'rating'] * hawkers.loc[hawkers['address'] == restaurant, 'visited']
+        hawkers.loc[hawkers['address'] == restaurant, 'visited'] = hawkers.loc[hawkers['address'] == restaurant, 'visited'] + 1
+        hawkers.loc[hawkers['address'] == restaurant, 'rating'] = (int(rating) + total)/hawkers.loc[hawkers['address'] == restaurant, 'visited']
+        this = float(hawkers.loc[hawkers['address'] == restaurant, 'rating'])
         hawkers.to_csv('/Users/DELL1/Downloads/Telegram Desktop/Orbital 12 Jun CSV File.csv', index=False)
-        update.message.reply_text(f"Rating for {restaurant} updated to {float(hawkers.loc[hawkers['name'] == restaurant, 'rating'])}.\n\nThank you for contributing!")
+        update.message.reply_text(f"Rating for {restaurant} updated to {this:.2f}.\n\nThank you for contributing!")
     else:
         update.message.reply_text("Invalid rating. Please send a number between 0 and 5.")
 
