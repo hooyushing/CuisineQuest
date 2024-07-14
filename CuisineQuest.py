@@ -20,7 +20,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Callback
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 # Define the bot token
-TOKEN = '7113953543:AAGsP6zbVPR1kM8AwbU0Jjy7_jt0W5Jlh-A'
+TOKEN = '7113953543:AAHe-auXgHvOI-pvf2G-KddQoUlwxYGUOls'
 
 # Initialize the updater and dispatcher
 updater = Updater(token=TOKEN, use_context=True)
@@ -30,7 +30,7 @@ dp = updater.dispatcher
 hawkers = pd.read_csv('/Users/DELL1/Downloads/Telegram Desktop/Orbital 12 Jun CSV File.csv')
 
 # Define conversation states
-START, FEATURE, CUISINE, DIETARY, LOCATION, RATING_SELECT, RATING_INPUT = range(7)
+START, FEATURE, CUISINE, DIETARY, LOCATION, RATING_SELECT, RATING_INPUT, TOP_THREE = range(8)
 
 # Start command handler
 def start(update: Update, context: CallbackContext) -> int:
@@ -43,7 +43,8 @@ def feature_command(update: Update, context: CallbackContext) -> int:
         "/Location - Choose a location of your liking and discover the best restaurants\n"
         "/dietary_preference - Filter restaurants based on dietary preference\n"
         "/Cuisine - Filter restaurants based on cuisine!\n"
-        "/Ratings - Review your favourite restaurants!"
+        "/Ratings - Review your favourite restaurants!\n"
+        "/Top_three - The top 3 rated restaurants at the moment!"
     )
     update.message.reply_text(features_text)
     return FEATURE
@@ -144,6 +145,29 @@ def handle_location(update: Update, context: CallbackContext) -> int:
         update.message.reply_text('Invalid location. Please enter a valid location.')
     return ConversationHandler.END
 
+def top_three(update: Update, context: CallbackContext) -> int:
+    # Check if the necessary columns exist
+    if 'address' not in hawkers.columns or 'rating' not in hawkers.columns:
+        update.message.reply_text("Error: 'address' or 'rating' column not found in the data.")
+        return ConversationHandler.END
+    
+    # Sort the DataFrame by the 'Rating' column in descending order and get the top 3 entries
+    top_restaurants = hawkers.sort_values(by='rating', ascending=False).head(3)[['address', 'rating']]
+
+    # Check if there are any top restaurants
+    if top_restaurants.empty:
+        update.message.reply_text("No top-rated restaurants found.")
+    else:
+        # Create the response message
+        response = "Top 3 rated restaurants:\n\n"
+        for index, row in top_restaurants.iterrows():
+            response += f"{row['address']} - Rated: {row['rating']}/5\n"
+        update.message.reply_text(response)
+        
+    return ConversationHandler.END
+
+
+
 # Rate restaurants handler
 def rate_restaurants(update: Update, context: CallbackContext) -> int:
     update.message.reply_text('Please enter the name of the restaurant you wish to rate.')
@@ -190,6 +214,7 @@ def save_rating(update: Update, context: CallbackContext) -> int:
 
     return ConversationHandler.END
 
+
 # Define the conversation handler with states
 conv_handler = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
@@ -199,7 +224,8 @@ conv_handler = ConversationHandler(
             CommandHandler('cuisine', cuisine),
             CommandHandler('dietary_preference', dietary_preference),
             CommandHandler('location', find_eatery),
-            CommandHandler('Ratings', rate_restaurants)
+            CommandHandler('Ratings', rate_restaurants),
+            CommandHandler('Top_three', top_three)
         ],
         CUISINE: [MessageHandler(Filters.text & ~Filters.command, handle_cuisine)],
         DIETARY: [MessageHandler(Filters.text & ~Filters.command, handle_dietary_preference)],
@@ -221,6 +247,15 @@ dp.add_handler(conv_handler)
 # Start the bot
 updater.start_polling()
 updater.idle()
+
+
+
+
+
+
+
+
+
 
 
 
