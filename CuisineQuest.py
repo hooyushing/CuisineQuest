@@ -19,7 +19,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Callback
 # Initialize logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-# Define the bot token
+# Bot token
 TOKEN = '7113953543:AAHe-auXgHvOI-pvf2G-KddQoUlwxYGUOls'
 
 # Initialize the updater and dispatcher
@@ -29,15 +29,15 @@ dp = updater.dispatcher
 # Load the hawkers CSV file
 hawkers = pd.read_csv('/Users/DELL1/Downloads/Telegram Desktop/Orbital 12 Jun CSV File.csv')
 
-# Define conversation states
+# Conversation states
 START, FEATURE, CUISINE, DIETARY, LOCATION, RATING_SELECT, RATING_INPUT, TOP_THREE = range(8)
 
-# Start command handler
+# Command Handler: start
 def start(update: Update, context: CallbackContext) -> int:
     update.message.reply_text("Hello! Welcome to CuisineQuest bot. Type /features to see available instructions")
     return START
 
-# Features command handler
+# Command Handler: features
 def feature_command(update: Update, context: CallbackContext) -> int:
     features_text = (
         "/Location - Choose a location of your liking and discover the best restaurants\n"
@@ -49,7 +49,7 @@ def feature_command(update: Update, context: CallbackContext) -> int:
     update.message.reply_text(features_text)
     return FEATURE
 
-# Dietary preference handler
+# Command Handler: Dietary Preference
 def dietary_preference(update: Update, context: CallbackContext) -> int:
     button1 = KeyboardButton('Vegan')
     button2 = KeyboardButton('Halal')
@@ -73,7 +73,7 @@ def handle_dietary_preference(update: Update, context: CallbackContext) -> int:
         update.message.reply_text('Invalid option! Please use the /dietary_preference command to choose again.')
     return ConversationHandler.END
 
-# Cuisine handler
+# Command Handler: Cuisine
 def cuisine(update: Update, context: CallbackContext) -> int:
     button1 = KeyboardButton('Asian')
     button2 = KeyboardButton('Western')
@@ -104,7 +104,7 @@ def handle_cuisine(update: Update, context: CallbackContext) -> int:
         update.message.reply_text('Invalid option! Please use the /cuisine command to choose again.')
     return ConversationHandler.END
 
-# Find eatery handler
+# Command Handler: Location
 def find_eatery(update: Update, context: CallbackContext) -> int:
     update.message.reply_text(
         'These are the available MRT stations you can key in: Admiralty, Aljunied, Ang Mo Kio, Bartley, Bayfront, '
@@ -145,6 +145,8 @@ def handle_location(update: Update, context: CallbackContext) -> int:
         update.message.reply_text('Invalid location. Please enter a valid location.')
     return ConversationHandler.END
 
+
+# Command Handler: Top_three
 def top_three(update: Update, context: CallbackContext) -> int:
     # Check if the necessary columns exist
     if 'address' not in hawkers.columns or 'rating' not in hawkers.columns:
@@ -168,7 +170,7 @@ def top_three(update: Update, context: CallbackContext) -> int:
 
 
 
-# Rate restaurants handler
+# Command Handler: Ratings
 def rate_restaurants(update: Update, context: CallbackContext) -> int:
     update.message.reply_text('Please enter the name of the restaurant you wish to rate.')
     return RATING_SELECT
@@ -215,7 +217,7 @@ def save_rating(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
 
-# Define the conversation handler with states
+# Handles conversation states and interation with user
 conv_handler = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
     states={
