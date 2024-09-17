@@ -20,7 +20,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Callback
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 # Bot token
-TOKEN = '7113953543:AAHe-auXgHvOI-pvf2G-KddQoUlwxYGUOls'
+TOKEN = '-'
 
 # Initialize the updater and dispatcher
 updater = Updater(token=TOKEN, use_context=True)
